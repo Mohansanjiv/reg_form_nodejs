@@ -1,0 +1,89 @@
+
+Project Documentation
+Introduction
+This document provides an overview and documentation for the Express.js application used for user registration, login, and basic page rendering. 
+The application uses the MongoDB database to store user information and bcrypt for password hashing.
+
+project-root
+│
+├── db
+│   └── conn.js
+├── models
+│   └── registers.js
+├── public
+│   └── ...
+├── templates
+│   ├── partials
+│   │   └── ...
+│   ├── views
+│   │   ├── about.hbs
+│   │   ├── contact.hbs
+│   │   ├── index.hbs
+│   │   ├── login.hbs
+│   │   └── register.hbs
+│   └── ...
+├── app.js
+└── package.json
+
+db: Contains the file (conn.js) responsible for setting up the MongoDB database connection.
+models: Contains the Mongoose model (registers.js) for user registration.
+public: Static assets directory (CSS, JS, images, etc.).
+templates: Handlebars templates for rendering views.
+partials: Reusable components for views.
+views: Individual views for pages like about, contact, index, login, and register.
+app.js: Main application file.
+
+Getting Started
+Clone the Repository:
+
+bash
+Copy code
+git clone <repository-url>
+Install Dependencies:
+
+bash
+Copy code
+cd project-root
+npm install
+Run the Application:
+
+bash
+Copy code
+node app.js
+The application will be accessible at http://localhost:5000 by default.
+
+Configuration
+Port Configuration:
+
+The application is set to run on port 5000 by default. You can change the port by modifying the const port variable in app.js.
+Database Configuration:
+
+The MongoDB connection is configured in db/conn.js. Update the connection string (mongoose.connect) with your MongoDB server details.
+Application Flow
+Homepage (/):
+
+Renders the 'index' view.
+Registration (/register):
+
+Renders the 'register' view with a form for user registration.
+On form submission, checks if the email is already registered.
+If not, creates a new user and saves it to the database.
+Login (/login):
+
+Renders the 'login' view with a form for user login.
+On form submission, checks if the email exists.
+If yes, compares the hashed password to validate the login.
+About (/about):
+
+Renders the 'about' view.
+Contact (/contact):
+
+Renders the 'contact' view.
+Error Handling
+Duplicate Email: If a user tries to register with an already registered email, a 400 response is sent with the message "Email already registered."
+Registration Failure: If registration fails for any other reason, a 400 response is sent with an appropriate error message.
+Login Failure: If login fails, a 400 response is sent with the message "Invalid login details" or "User not found."
+Dependencies
+Express.js: Web application framework for Node.js.
+Mongoose: MongoDB object modeling tool.
+Bcrypt: Library for hashing passwords.
